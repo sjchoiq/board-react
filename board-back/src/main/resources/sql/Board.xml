@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.dao.BoardDao">
+
+	<resultMap id="boardResultMap" type="board">
+		<result column="member_no" property="memberNo" />
+		<result column="created_time" property="createdTime" />
+		<result column="updated_time" property="updatedTime" />
+	</resultMap>
+
+	<select id="getAllBoard" resultMap="boardResultMap">
+		SELECT * FROM board ORDER BY no desc;
+	</select>
+<!--	createBoard-->
+	<insert id="createBoard">
+		INSERT INTO board(
+			type, title, contents, member_no, created_time, updated_time, likes, counts)
+		VALUES (
+				   #{type},
+				   #{title},
+				   #{contents},
+				   #{memberNo},
+				   #{createdTime},
+				   #{updatedTime},
+				   #{likes},
+				   #{counts}
+			   );
+	</insert>
+</mapper>
